@@ -35,10 +35,17 @@
 _minted*/
 *.pyg
 
-# ---------- Compiled slides ----------
-# The compiled main.pdf is kept so students can download the slides.
-# Uncomment the next line if you want to track only the LaTeX sources.
+# ---------- Compiled PDFs ----------
+# main.pdf (slides) and handout.pdf (handout) are kept so students can
+# download them. Uncomment the lines below to track only the LaTeX sources.
 # **/Presentation/main.pdf
+# **/Handouts/handout.pdf
+
+# Preview PDFs shared during drafting (duplicates of the compiled PDFs)
+*_preview.pdf
+
+# Zip packages of the sources
+*.zip
 
 # ---------- Copyrighted textbook excerpts ----------
 # Do not publish scanned/extracted textbook pages in a public repository.
