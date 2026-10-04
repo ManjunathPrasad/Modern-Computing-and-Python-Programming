@@ -1,0 +1,372 @@
+%=========================================================
+% Professional Black & White Beamer Template
+% Compile using XeLaTeX
+%=========================================================
+
+\documentclass[aspectratio=169]{beamer}
+
+%---------------------------------------------------------
+% Theme
+%---------------------------------------------------------
+\usetheme{Madrid}
+\usecolortheme{default}
+
+%---------------------------------------------------------
+% Font
+%---------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+
+%---------------------------------------------------------
+% Packages
+%---------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[absolute,overlay]{textpos}
+\usepackage[dvipsnames]{xcolor}
+%---------------------------------------------------------
+% Black & White Theme
+%---------------------------------------------------------
+
+\setbeamercolor{background canvas}{bg=white}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+
+\setbeamercolor{title}{fg=white,bg=NavyBlue}
+\setbeamercolor{frametitle}{fg=white,bg=NavyBlue}
+
+\setbeamercolor{author in head/foot}{fg=white,bg=NavyBlue}
+\setbeamercolor{title in head/foot}{fg=white,bg=NavyBlue}
+\setbeamercolor{date in head/foot}{fg=white,bg=NavyBlue}
+
+\setbeamercolor{block title}{fg=white,bg=NavyBlue}
+\setbeamercolor{block body}{fg=black,bg=white}
+
+\setbeamercolor{item}{fg=NavyBlue}
+\setbeamercolor{enumerate item}{fg=white}
+\setbeamercolor{section in toc}{fg=NavyBlue}
+
+\setbeamercolor{alerted text}{fg=black}
+
+%---------------------------------------------------------
+% Remove Navigation Icons
+%---------------------------------------------------------
+
+\setbeamertemplate{navigation symbols}{}
+
+%---------------------------------------------------------
+% Bullet Symbols
+%---------------------------------------------------------
+
+\setbeamertemplate{itemize item}{$\clubsuit$}
+\setbeamertemplate{itemize subitem}{$\blacktriangleright$}
+\setbeamertemplate{itemize subsubitem}{$\bullet$}
+%\setbeamercovered{transparent}
+\setbeamercovered{transparent=3} 
+%---------------------------------------------------------
+% Remove Header
+%---------------------------------------------------------
+
+\setbeamertemplate{headline}{}
+
+%---------------------------------------------------------
+% Footer
+%---------------------------------------------------------
+
+\setbeamertemplate{footline}
+{
+\leavevmode
+
+\hbox{
+
+\begin{beamercolorbox}[wd=.30\paperwidth,ht=2.8ex,dp=1ex,left]{author in head/foot}
+\hspace{2mm}\insertshortauthor
+\end{beamercolorbox}
+
+\begin{beamercolorbox}[wd=.50\paperwidth,ht=2.8ex,dp=1ex,center]{title in head/foot}
+\insertshorttitle
+\end{beamercolorbox}
+
+\begin{beamercolorbox}[wd=.20\paperwidth,ht=2.8ex,dp=1ex,right]{date in head/foot}
+\insertframenumber/\inserttotalframenumber
+\hspace{2mm}
+\end{beamercolorbox}
+
+}
+
+}
+
+%---------------------------------------------------------
+% Logo Command
+%---------------------------------------------------------
+
+\newcommand{\MITELogo}{
+\begin{textblock*}{2.3cm}(14.85cm,0.15cm)
+    \includegraphics[width=1cm]{images/MITE_logo.png}
+\end{textblock*}
+}
+\newcommand{\MITELogoTitle}{
+\begin{textblock*}{0.8cm}(7.6cm,6.4cm)
+    \includegraphics[height=1.2cm]{images/MITE_logo.png}
+\end{textblock*}
+}
+%---------------------------------------------------------
+% Title Information
+%---------------------------------------------------------
+
+\title[\textbf{Modern Computing and Python Programming}]{\textbf{Modern Computing and Python Programming} \\ \large (26ESCC106)
+}
+
+\author[\textbf{Manjunath Prasad H. R.}]{\textbf{Manjunath Prasad H. R.} \\ Assistant Professor \\Department of Artificial Intelligence and Machine Learning}
+
+\institute[\textbf{MITE}]{\textbf{Mangalore Institute of Technology and Engineering}}
+
+
+
+
+\date{}
+%=========================================================
+\begin{document}
+\MITELogoTitle
+%=========================================================
+% Title Slide (NO LOGO)
+%=========================================================
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+%=========================================================
+% Table of Contents (NO LOGO)
+%=========================================================
+
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+
+%=========================================================
+\section{Course Description}
+
+\begin{frame}{Course at a Glance}
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{tabular}{|p{5cm}|p{3.2cm}|p{2.4cm}|p{1.2cm}|}
+\hline
+Semester & \textbf{I / II} & CIE Marks & \textbf{50} \\ \hline
+Course Code & \textbf{26ESCC106} & SEE Marks & \textbf{50} \\ \hline
+Teaching Hrs./Week (L:T:P:S) & \textbf{3:0:2:0} & Exam Hrs. & \textbf{03} \\ \hline
+Total Hrs & \textbf{64 (40L + 24P)} & Credits & \textbf{04} \\ \hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}{Course Description}
+\begin{enumerate}
+\item<1-> An \textbf{introductory course} on modern computing approaches, Python programming, and Artificial Intelligence \& Machine Learning.
+\item<2-> Begins with the \textbf{evolution of computing} and contemporary paradigms --- parallel, distributed, cluster, grid, cloud, and edge computing.
+\item<3-> Covers essential \textbf{Python programming constructs}, problem-solving techniques, and file processing.
+\item<4-> Develops basic applications using appropriate \textbf{Python libraries} (NumPy, Pandas, Scikit-learn).
+\item<5-> Concludes with an overview of \textbf{Artificial Intelligence}, intelligent agents, and the basic \textbf{Machine Learning workflow}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Course Objectives}
+\textbf{This course is designed to:}
+\vspace{0.3cm}
+\begin{enumerate}
+\item<1-> Impart knowledge on \textbf{modern computing approaches} including parallel, distributed, cluster, grid, cloud, and edge computing.
+\item<2-> Impart knowledge on Python \textbf{data types, operators}, and \textbf{input/output} statements.
+\item<3-> Provide knowledge of \textbf{strings, control structures, built-in data structures, functions}, and \textbf{file handling} in Python.
+\item<4-> Provide fundamentals of \textbf{artificial intelligence} and \textbf{machine learning} techniques.
+\end{enumerate}
+\end{frame}
+
+%=========================================================
+\section{Course Module Topics}
+\subsection{Module Topics}
+
+\begin{frame}{Course Module 1 Topics - Modern Computing Approaches (8L)}
+\begin{itemize}
+\item \textbf{Evolution of Computing:} Scalable computing over the Internet, the Age of Internet Computing, Scalable Computing Trends and New Paradigms
+\item \textbf{Parallel and Distributed Computing:} Eras of computing, parallel vs.\ distributed computing, parallel processing, elements of distributed computing
+\item \textbf{Cluster Computing:} Introduction, why clusters exist, components and characteristics, types, examples
+\item \textbf{Grid Computing:} Definition, power grid analogy, virtual organisation, characteristics, types, examples, advantages and limitations
+\item \textbf{Cloud Computing:} Introduction, cloud reference model (IaaS, PaaS, SaaS), types of clouds (public, private, hybrid, community)
+\item \textbf{Edge Computing:} Introduction, need, architecture, cloud vs.\ edge, applications
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Module 2 Topics - Python Fundamentals (8L + 6P)}
+\begin{itemize}
+\item About Python, Program Structure
+\item Variables, Keywords, Identifiers, Literals
+\item Input and Output Statements
+\item Data Types, Operators, Expressions
+\item Operator Precedence, Type Conversion
+\item Basic Debugging Techniques
+\end{itemize}
+\end{frame}
+
+\subsection{Module Lab Component}
+\begin{frame}{Module 2 Laboratory - Python Basics}
+\begin{itemize}
+\item Read student name, USN, and marks of three courses; compute total and average; display in a formatted way.
+\item Read the radius of a circle; compute area and circumference; convert the area to an integer.
+\item Accept an integer, a float, a string, and a Boolean; display values and data types; perform arithmetic and string operations.
+\item Accept two numbers and perform addition, multiplication, division, floor division, modulus, and exponentiation.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Module 3 Topics - Strings, Flow Control, and Functions (8L + 6P)}
+\begin{itemize}
+\item \textbf{Strings:} Creating and storing strings, built-in string functions, string operators, indexing \& slicing, formatting (f-strings \& \texttt{format()})
+\item \textbf{Flow Control:} \texttt{if}, \texttt{if-else}, \texttt{elif}; \texttt{for}, \texttt{while}; nested loops; \texttt{break}, \texttt{continue}, \texttt{pass}
+\item \textbf{Functions:} Defining \& calling, built-in and user-defined functions, arguments \& parameters, global and local variables, command line arguments, lambda functions, importing user-defined modules
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Module 3 Laboratory - Strings, Menus, and Functions}
+\begin{itemize}
+\item String operations: indexing, slicing, case conversion, counting, replacing, split/join, \texttt{startswith}/\texttt{endswith}.
+\item Menu-driven program: even/odd, largest of three, multiplication table, primes in a range, exit.
+\item Factorial using a function; simple interest with default arguments; square using a lambda.
+\item Create a module \texttt{mymath.py} with arithmetic functions and import it into another program.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Module 4 Topics - Built-in Data Structures and Files (8L + 6P)}
+\begin{itemize}
+\item \textbf{Python Data Structures:} Mutable and immutable objects, lists, tuples, sets, dictionaries
+\item Common operations on lists, tuples, and dictionaries
+\item Passing lists, tuples, and dictionaries to functions
+\item \textbf{File Handling:} Introduction to files, opening a file, file modes, reading, writing, appending, closing a file
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Module 4 Laboratory - Data Structures and Files}
+\begin{itemize}
+\item List operations: insert, delete, sort, reverse; tuple of names: display, count, index.
+\item Dictionary of USN $\rightarrow$ name: add, update, delete, display; functions accepting list, tuple, and dictionary.
+\item Text files: write, append, read; count characters, words, and lines; \texttt{read()}, \texttt{readline()}, \texttt{readlines()}.
+\item File copy: copy, verify, display contents and sizes of both files.
+\item Tuple of integers (max, min, count, index); set operations; Employee ID dictionary operations.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Course Module 5 Topics - Artificial Intelligence and Machine Learning (8L + 6P)}
+\begin{itemize}
+\item \textbf{Artificial Intelligence:} Introduction, history and evolution of AI, applications of AI
+\item \textbf{Intelligent Agents:} Agents and environments, structure of agents
+\item \textbf{Machine Learning:} Introduction; supervised, unsupervised, and reinforcement learning
+\item \textbf{ML Workflow / Pipeline:} Structure of data, data pre-processing, features, feature selection, model selection, training, testing, and evaluation
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Module 5 Laboratory - Working with a Dataset}
+\begin{itemize}
+\item Load the Titanic dataset (\texttt{Titanic.csv}) using Pandas.
+\item Display the first five records, dataset information, and summary statistics.
+\item Select and display the input features and the target attribute.
+\item Split the dataset into training and testing sets using Scikit-learn.
+\item Display the number of training and testing samples.
+\end{itemize}
+\end{frame}
+
+%=========================================================
+\section{Course Outcomes}
+\begin{frame}{Course Outcomes}
+
+\textbf{At the end of this course, the student will be able to:}
+
+\vspace{0.3cm}
+
+\begin{enumerate}
+\item \textbf{DESCRIBE} modern computing approaches and their characteristics.
+\item \textbf{DESCRIBE} fundamental Python programming constructs.
+\item \textbf{DESCRIBE} the basics of artificial intelligence and machine learning.
+\item \textbf{WRITE} Python programs to solve simple computational problems and perform various file operations.
+\item \textbf{IDENTIFY} suitable Python built-in data structures and utilize them for problem solving.
+\item \textbf{DEVELOP} Python programs utilizing NumPy, Pandas, and Scikit-learn to process given datasets.
+\end{enumerate}
+
+\end{frame}
+
+%=========================================================
+\section{Textbooks}
+\begin{frame}{Textbooks}
+\small
+\begin{enumerate}
+\item Kai Hwang, Geoffrey C. Fox and Jack J. Dongarra, \textit{Distributed and Cloud Computing: From Parallel Processing to the Internet of Things}, Morgan Kaufmann, Elsevier, 2012.
+\item Rajkumar Buyya, Christian Vecchiola, S. Thamarai Selvi, \textit{Mastering Cloud Computing}, McGraw Hill Education, 2013.
+\item Reema Thareja, \textit{Python Programming using Problem Solving Approach}, Oxford University Press, 3rd Edition, 2024.
+\item Stuart Russell and Peter Norvig, \textit{Artificial Intelligence: A Modern Approach}, 4th Edition, Pearson, 2021.
+\item Saikat Dutt, Subramanian Chandramouli, Amit Kumar Das, \textit{Machine Learning}, Pearson Education India, 1st Edition, 2018.
+\end{enumerate}
+\end{frame}
+
+\subsection{Reference Books and Web Links}
+\begin{frame}{Reference Books and Web Links}
+\small
+\textbf{Reference Books:}
+\begin{enumerate}
+\item Perry Lea, \textit{IoT and Edge Computing for Architects}, Packt Publishing, 2nd Edition, 2020.
+\item Eric Matthes, \textit{Python Crash Course}, No Starch Press, 2015.
+\item Al Sweigart, \textit{Automate the Boring Stuff with Python}, No Starch Press, 2019.
+\item Mark Fenner, \textit{Machine Learning with Python for Everyone}, Addison-Wesley Professional, 2020.
+\end{enumerate}
+\vspace{0.2cm}
+\textbf{Web Links (NPTEL):}
+\begin{itemize}
+\item Python full course: \texttt{https://nptel.ac.in/courses/106106182}
+\item Fundamentals of AI: \texttt{https://nptel.ac.in/courses/112103280}
+\end{itemize}
+\end{frame}
+
+%---------------------------------------------------------
+\begin{frame}{Tools Used in this Course}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\scriptsize
+\begin{tabular}{|p{4cm}|p{5cm}|}
+\hline
+\textbf{Category} & \textbf{Tools} \\ \hline
+Programming Language & Python 3 \\ \hline
+Numerical Computing & NumPy \\ \hline
+Data Handling & Pandas \\ \hline
+Machine Learning & Scikit-learn \\ \hline
+Dataset (Lab) & Titanic dataset (\texttt{Titanic.csv}) \\ \hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+%=========================================================
+% Thank You Slide
+%=========================================================
+
+\begin{frame}
+
+% \MITELogo
+
+\centering
+\vfill
+
+{\Huge Thank You}
+
+\vfill
+
+\end{frame}
+
+%=========================================================
+
+\input{Module1.tex}
+\end{document}

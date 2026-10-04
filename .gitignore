@@ -1,0 +1,55 @@
+# =========================================================
+# .gitignore for LaTeX Beamer course material (26ESCC106)
+# Place this file in the repository root (the "Modules" folder)
+# =========================================================
+
+# ---------- LaTeX build files ----------
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.xdv
+*.vrb
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.lof
+*.lot
+*.dvi
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+*.ist
+*.thm
+*.listing
+_minted*/
+*.pyg
+
+# ---------- Compiled slides ----------
+# The compiled main.pdf is kept so students can download the slides.
+# Uncomment the next line if you want to track only the LaTeX sources.
+# **/Presentation/main.pdf
+
+# ---------- Copyrighted textbook excerpts ----------
+# Do not publish scanned/extracted textbook pages in a public repository.
+Textbook Excerpt/
+**/Textbook Excerpt/
+
+# ---------- Editor and OS files ----------
+.vscode/
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
