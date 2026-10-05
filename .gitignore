@@ -35,11 +35,18 @@
 _minted*/
 *.pyg
 
+# ---------- LaTeX source files (kept private) ----------
+# Only the compiled PDFs are published. The .tex sources stay on the
+# author's computer, in every folder (Presentation, Handouts, Notes,
+# Git and GitHub, and any future module).
+*.tex
+*.sty
+*.cls
+*.bib
+
 # ---------- Compiled PDFs ----------
-# main.pdf (slides) and handout.pdf (handout) are kept so students can
-# download them. Uncomment the lines below to track only the LaTeX sources.
-# **/Presentation/main.pdf
-# **/Handouts/handout.pdf
+# main.pdf, handout.pdf, notes.pdf and git-github-handout.pdf are
+# published so that students can download them.
 
 # Preview PDFs shared during drafting (duplicates of the compiled PDFs)
 *_preview.pdf
