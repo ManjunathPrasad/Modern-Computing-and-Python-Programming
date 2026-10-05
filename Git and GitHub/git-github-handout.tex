@@ -1,0 +1,565 @@
+%=========================================================
+% Step-by-Step Handout : Git and GitHub with VS Code
+% Modern Computing and Python Programming (26ESCC106)
+% Compile using XeLaTeX:
+%   latexmk -xelatex -interaction=nonstopmode -halt-on-error git-github-handout.tex
+%=========================================================
+
+\documentclass[11pt,a4paper]{article}
+
+%---------------------------------------------------------
+% Packages
+%---------------------------------------------------------
+\usepackage[margin=2cm,headheight=28pt,headsep=12pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,shapes.misc,fit,calc,decorations.pathreplacing}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=*}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{1.5em}
+
+%---------------------------------------------------------
+% Header / Footer
+%---------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=22pt]{images/MITE_logo.png}}
+\fancyhead[C]{\small\textbf{Modern Computing and Python Programming (26ESCC106)}\\ \footnotesize Handout: Git and GitHub with VS Code}
+\fancyhead[R]{\small Manjunath Prasad H. R.}
+\fancyfoot[C]{\small Page \thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+
+%---------------------------------------------------------
+% Headings
+%---------------------------------------------------------
+\titleformat{\section}{\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+
+%---------------------------------------------------------
+% Boxes
+%---------------------------------------------------------
+\newtcolorbox{defbox}{enhanced,colback=white,colframe=black,boxrule=0.5pt,arc=1pt,
+  left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=5pt,after skip=5pt}
+
+\newtcolorbox{notebox}[1][Note]{enhanced,breakable,colback=black!4,colframe=black,boxrule=0.5pt,arc=1pt,
+  left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=6pt,after skip=6pt,
+  title={#1},colbacktitle=black!12,coltitle=black,fonttitle=\bfseries}
+
+% Command typed in the terminal
+\newtcblisting{cmd}{enhanced,colback=black!85,colframe=black,boxrule=0.5pt,arc=1pt,
+  left=6pt,right=6pt,top=2pt,bottom=2pt,before skip=4pt,after skip=4pt,listing only,
+  listing options={basicstyle=\ttfamily\small\color{white},columns=fullflexible,keepspaces=true,breaklines=true,showstringspaces=false,upquote=true}}
+
+% Output shown by the terminal
+\newtcblisting{outbox}{enhanced,colback=white,colframe=black!60,boxrule=0.5pt,arc=1pt,
+  left=6pt,right=6pt,top=2pt,bottom=2pt,before skip=4pt,after skip=4pt,listing only,
+  title={\footnotesize Expected output},colbacktitle=black!8,coltitle=black,
+  listing options={basicstyle=\ttfamily\footnotesize,columns=fullflexible,keepspaces=true,breaklines=true,showstringspaces=false,upquote=true}}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\menu}[1]{\textsf{\textbf{#1}}}
+
+\tikzset{
+  box/.style={draw,rounded corners=2pt,align=center,font=\small,minimum height=0.8cm,inner sep=4pt},
+  arr/.style={-{Stealth[length=2.5mm]},thick},
+  callout/.style={circle,fill=red,text=white,font=\footnotesize\bfseries,inner sep=1.2pt,minimum size=0.42cm},
+}
+\newcommand{\figcap}[1]{\\[2pt]{\footnotesize\textit{#1}}}
+
+%=========================================================
+\begin{document}
+%=========================================================
+
+\begin{center}
+{\LARGE\bfseries Git and GitHub with VS Code}\\[4pt]
+{\large Step-by-Step Handout}\\[4pt]
+Modern Computing and Python Programming (26ESCC106)\\[6pt]
+\textbf{Manjunath Prasad H. R.}, Assistant Professor, Department of AIML, MITE
+\end{center}
+
+\begin{notebox}[What You Will Learn]
+\begin{enumerate}
+\item Install \textbf{Visual Studio Code (VS Code)} and \textbf{Git} on your computer.
+\item Identify the parts of the VS Code window: menu bar, activity bar, side bar, editor, and the integrated PowerShell terminal.
+\item Use the Git commands \code{git init}, \code{git config}, \code{git add}, \code{git commit}, \code{git remote}, and \code{git push}.
+\item Upload (push) your work to a repository on \textbf{GitHub}.
+\end{enumerate}
+\end{notebox}
+
+\tableofcontents
+\clearpage
+
+%=========================================================
+\section{Introduction: VS Code, Git, and GitHub}
+%=========================================================
+
+\begin{defbox}
+\textbf{Visual Studio Code (VS Code)} is a free source-code editor from Microsoft. We use it to write Python programs and to run Git commands in its built-in terminal.
+\end{defbox}
+
+\begin{defbox}
+\textbf{Git} is a \textbf{version control system}. It runs on your own computer and records snapshots (versions) of your files, so you can see what changed, when, and by whom, and go back to an earlier version if needed.
+\end{defbox}
+
+\begin{defbox}
+\textbf{GitHub} is a website (\code{github.com}) that stores Git repositories \textbf{online}. It acts as a backup of your work and lets you share it with others.
+\end{defbox}
+
+\textbf{Git versus GitHub:} Git is the \textbf{tool} installed on your laptop; GitHub is the \textbf{online place} where you upload what Git has recorded.
+
+\begin{center}
+\begin{tikzpicture}
+\node[box,minimum width=4.2cm,minimum height=1.6cm] (pc) at (0,0) {\textbf{Your computer}\\VS Code + Git\\(local repository)};
+\node[box,minimum width=4.2cm,minimum height=1.6cm,fill=black!8] (gh) at (8,0) {\textbf{GitHub}\\(remote repository\\on the Internet)};
+\draw[arr] (pc.north east) to[bend left=15] node[above,font=\small]{\code{git push}} (gh.north west);
+\end{tikzpicture}
+\figcap{Figure 1: Git works on your computer; GitHub stores a copy online}
+\end{center}
+
+\textbf{Key terms:}
+\begin{itemize}
+\item \textbf{Repository (repo):} A project folder whose history is tracked by Git.
+\item \textbf{Commit:} A saved snapshot of your files, with a message describing the change.
+\item \textbf{Branch:} A line of development. Our main branch is called \code{main}.
+\item \textbf{Remote:} A copy of the repository stored on another computer, such as GitHub.
+\end{itemize}
+
+%=========================================================
+\section{Installing VS Code (Windows)}
+%=========================================================
+
+\begin{enumerate}
+\item Open a web browser and go to \code{https://code.visualstudio.com}.
+\item Click \menu{Download for Windows}. The installer file (e.g., \code{VSCodeUserSetup-x64-\ldots.exe}) is downloaded.
+\item Double-click the downloaded file to start the installer.
+\item \textbf{License Agreement:} Select \menu{I accept the agreement} and click \menu{Next}.
+\item \textbf{Select Destination Location:} Keep the default folder and click \menu{Next}.
+\item \textbf{Select Start Menu Folder:} Keep the default and click \menu{Next}.
+\item \textbf{Select Additional Tasks:} Tick the following options and click \menu{Next}:
+  \begin{itemize}
+  \item Create a desktop icon.
+  \item Add ``Open with Code'' action to Windows Explorer file context menu.
+  \item Add ``Open with Code'' action to Windows Explorer directory context menu.
+  \item Register Code as an editor for supported file types.
+  \item \textbf{Add to PATH} (keep this ticked; it lets you type \code{code} in a terminal).
+  \end{itemize}
+\item Click \menu{Install} and wait for the installation to finish.
+\item Tick \menu{Launch Visual Studio Code} and click \menu{Finish}.
+\end{enumerate}
+
+\begin{notebox}
+The installer screens may look slightly different in newer versions. If an option is not mentioned above, keep its default value.
+\end{notebox}
+
+%=========================================================
+\section{Installing Git (Windows)}
+%=========================================================
+
+\begin{enumerate}
+\item Go to \code{https://git-scm.com} and click \menu{Download for Windows}.
+\item Download the \textbf{64-bit Git for Windows Setup} file and double-click it.
+\item \textbf{Information (license):} Click \menu{Next}.
+\item \textbf{Select Destination Location:} Keep the default and click \menu{Next}.
+\item \textbf{Select Components:} Keep the defaults and click \menu{Next}.
+\item \textbf{Choosing the default editor used by Git:} Select \menu{Use Visual Studio Code as Git's default editor} and click \menu{Next}.
+\item \textbf{Adjusting the name of the initial branch in new repositories:} Select \menu{Override the default branch name for new repositories} and make sure the name is \code{main}. Click \menu{Next}.
+\item \textbf{Adjusting your PATH environment:} Keep \menu{Git from the command line and also from 3rd-party software} (recommended) and click \menu{Next}.
+\item For all the remaining screens, keep the default options and click \menu{Next}.
+\item Click \menu{Install}, then \menu{Finish}.
+\end{enumerate}
+
+\begin{notebox}[Why set the branch name to main?]
+We push our work using \code{git push origin main}. If Git names the first branch \code{master} instead, this command fails. Setting the default branch to \code{main} during installation avoids this problem. (If you missed this step, see Section~\ref{sec:errors}.)
+\end{notebox}
+
+\subsection{Verify the Installation}
+
+Close and reopen VS Code (so that it picks up the new PATH), open the terminal (\menu{Terminal} $\rightarrow$ \menu{New Terminal}), and type:
+
+\begin{cmd}
+git --version
+\end{cmd}
+\begin{outbox}
+git version 2.xx.x.windows.1
+\end{outbox}
+
+Any version number means Git is installed correctly. (The exact number depends on the version you downloaded.)
+
+%=========================================================
+\section{A Tour of the VS Code Window}
+%=========================================================
+
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (img) at (0,0) {\includegraphics[width=0.85\linewidth]{images/vscode_window.png}};
+\begin{scope}[x={(img.south east)},y={(img.north west)}]
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0203,0.9971) rectangle (0.2235,0.9671);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0008,0.9628) rectangle (0.0274,0.0329);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0289,0.9628) rectangle (0.2564,0.0329);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.2587,0.9628) rectangle (0.9984,0.2775);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.2587,0.2718) rectangle (0.9984,0.0315);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0008,0.0286) rectangle (0.9992,0.0007);
+\node[callout] at (0.2501,0.9821) {1};
+\node[callout] at (0.0141,0.1631) {2};
+\node[callout] at (0.1426,0.4850) {3};
+\node[callout] at (0.6252,0.5994) {4};
+\node[callout] at (0.6252,0.1130) {5};
+\node[callout] at (0.4377,0.0143) {6};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.9428) -- (0.0055,0.9428);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.9428) {Search};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.8984) -- (0.0055,0.8984);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.8984) {Explorer};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.8534) -- (0.0055,0.8534);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.8534) {Source Control};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.8069) -- (0.0055,0.8069);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.8069) {Run and Debug};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.7160) -- (0.0055,0.7160);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.7160) {Extensions};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.1001) -- (0.0055,0.1001);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.1001) {Accounts};
+\draw[red,thick,-{Stealth[length=1.6mm]}] (-0.0120,0.0558) -- (0.0055,0.0558);
+\node[anchor=east,font=\scriptsize\bfseries,inner sep=1pt] at (-0.0120,0.0558) {Manage};
+\end{scope}
+\end{tikzpicture}
+\figcap{Figure 2: Main parts of the VS Code window --- \textcircled{\scriptsize 1} Menu bar, \textcircled{\scriptsize 2} Activity bar, \textcircled{\scriptsize 3} Side bar (Explorer), \textcircled{\scriptsize 4} Editor, \textcircled{\scriptsize 5} Panel with the integrated terminal, \textcircled{\scriptsize 6} Status bar}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Menu bar:} The row of menus at the top: \menu{File}, \menu{Edit}, \menu{Selection}, \menu{View}, \menu{Go}, \menu{Run}, \menu{Terminal}, \menu{Help}. For example, \menu{File} $\rightarrow$ \menu{Open Folder} opens a project folder, and \menu{Terminal} $\rightarrow$ \menu{New Terminal} opens the terminal.
+\item \textbf{Activity bar:} The narrow vertical bar of icons on the far left. Clicking an icon changes what the side bar shows. (Extra icons appear when you install extensions, e.g., Testing, Python, or AWS in Figure 2, and the order of icons can differ from computer to computer.)
+  \begin{itemize}
+  \item \textbf{Explorer} (\code{Ctrl+Shift+E}): shows the files and folders of the opened project.
+  \item \textbf{Search} (\code{Ctrl+Shift+F}): searches for text across all files.
+  \item \textbf{Source Control} (\code{Ctrl+Shift+G}): the Git panel; shows \textbf{Changes} and \textbf{Staged Changes} and lets you commit.
+  \item \textbf{Run and Debug} (\code{Ctrl+Shift+D}): runs and debugs programs.
+  \item \textbf{Extensions} (\code{Ctrl+Shift+X}): installs add-ons such as the \textbf{Python} extension.
+  \item \textbf{Accounts} and \textbf{Manage} (bottom): sign in (e.g., to GitHub) and open settings.
+  \end{itemize}
+\item \textbf{Side bar:} The panel next to the activity bar. Its content depends on the activity bar icon selected (Explorer, Source Control, etc.).
+\item \textbf{Editor:} The large central area where you open and edit files. Each open file appears as a tab (e.g., \code{Demo.py} and \code{Sample.txt} in Figure 2).
+\item \textbf{Panel with the integrated terminal:} The area at the bottom, with the tabs \textbf{Problems}, \textbf{Debug Console}, \textbf{Output}, and \textbf{Terminal}. The \textbf{Terminal} tab runs \textbf{PowerShell} (shown as \code{pwsh} or \code{powershell}; the default terminal on Windows) inside VS Code, so you can type Git commands without leaving the editor. Open it with \menu{Terminal} $\rightarrow$ \menu{New Terminal} or \code{Ctrl+`} (backtick).
+\item \textbf{Status bar:} The thin bar at the very bottom. It shows errors and warnings, the cursor position (e.g., \code{Ln 1, Col 22}), the file's language (\code{Python}), and the Python version. Once the folder is a Git repository, it also shows the current branch (e.g., \code{main}).
+\end{enumerate}
+
+\subsection{Open a Project Folder}
+
+Git works on a \textbf{folder}. Before using Git, open your project folder in VS Code:
+\begin{enumerate}
+\item Create a folder, for example \code{C:\textbackslash Users\textbackslash Student\textbackslash MCPP}.
+\item In VS Code, select \menu{File} $\rightarrow$ \menu{Open Folder\ldots}, choose the folder, and click \menu{Select Folder}. If asked, click \menu{Yes, I trust the authors}.
+\item Create a file, e.g., \code{hello.py}, using the \menu{New File} icon in the Explorer, and save it (\code{Ctrl+S}).
+\item Open the terminal (\code{Ctrl+`}). The prompt shows that you are inside your folder:
+\end{enumerate}
+\begin{outbox}
+PS C:\Users\Student\MCPP>
+\end{outbox}
+
+%=========================================================
+\section{How Git Tracks Your Work}
+%=========================================================
+
+Git moves your changes through \textbf{three local areas} and then to the \textbf{remote} repository on GitHub.
+
+\begin{center}
+\begin{tikzpicture}
+\node[box,minimum width=3cm,minimum height=1.4cm] (wd) at (0,0) {\textbf{Working}\\\textbf{Directory}\\(your files)};
+\node[box,minimum width=3cm,minimum height=1.4cm] (st) at (4.4,0) {\textbf{Staging}\\\textbf{Area}\\(Staged Changes)};
+\node[box,minimum width=3cm,minimum height=1.4cm] (lr) at (8.8,0) {\textbf{Local}\\\textbf{Repository}\\(\code{.git} folder)};
+\node[box,minimum width=3cm,minimum height=1.4cm,fill=black!8] (rr) at (13.2,0) {\textbf{Remote}\\\textbf{Repository}\\(GitHub)};
+\draw[arr] (wd)--node[above,font=\scriptsize]{\code{git add .}} (st);
+\draw[arr] (st)--node[above,font=\scriptsize]{\code{git commit}} (lr);
+\draw[arr] (lr)--node[above,font=\scriptsize]{\code{git push}} (rr);
+\draw[decorate,decoration={brace,amplitude=6pt,mirror},thick] (-1.5,-1.0)--(10.3,-1.0) node[midway,below=7pt,font=\small]{Your computer};
+\node[font=\small] at (13.2,-1.45) {Internet};
+\end{tikzpicture}
+\figcap{Figure 3: The path of a change --- working directory $\rightarrow$ staging area $\rightarrow$ local repository $\rightarrow$ GitHub}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Working directory:} The files you see and edit in the Explorer. Edited files appear under \textbf{Changes} in the Source Control panel.
+\item \textbf{Staging area:} A waiting area for the changes you want to include in the next commit. Staged files appear under \textbf{Staged Changes}.
+\item \textbf{Local repository:} The hidden \code{.git} folder in your project, where Git stores every commit.
+\item \textbf{Remote repository:} The copy of your repository on GitHub.
+\end{enumerate}
+
+%=========================================================
+\section{Git Commands, Step by Step}
+%=========================================================
+
+Type each command in the VS Code terminal \textbf{inside your project folder} and press \code{Enter}.
+
+%---------------------------------------------------------
+\subsection{Step 1: \code{git init} --- Create a Repository}
+
+\textbf{Purpose:} Turns the current folder into a Git repository. Git creates a hidden \code{.git} folder in which it will store the history of the project. Run it \textbf{once per project}.
+
+\begin{cmd}
+git init
+\end{cmd}
+\begin{outbox}
+Initialized empty Git repository in C:/Users/Student/MCPP/.git/
+\end{outbox}
+
+After this, the Source Control icon in the activity bar shows a number: the count of files that Git has noticed.
+
+%---------------------------------------------------------
+\subsection{Step 2: \code{git config} --- Tell Git Who You Are}
+
+\textbf{Purpose:} Every commit records the \textbf{name} and \textbf{email} of its author. Set them \textbf{once per computer}; the \code{--global} option applies them to all repositories on that computer.
+
+\begin{cmd}
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+\end{cmd}
+
+These commands print nothing when they succeed. To check the values you have set:
+
+\begin{cmd}
+git config --global --list
+\end{cmd}
+\begin{outbox}
+user.name=Your Name
+user.email=your.email@example.com
+\end{outbox}
+
+\begin{notebox}
+Use the \textbf{same email address} as your GitHub account, so that GitHub links the commits to your profile. Put the name in double quotes because it contains a space.
+\end{notebox}
+
+%---------------------------------------------------------
+\subsection{Step 3: \code{git add .} --- Stage the Changes}
+
+\textbf{Purpose:} Moves all new and modified files from \textbf{Changes} to \textbf{Staged Changes}, i.e., prepares them for the next commit. The dot (\code{.}) means ``everything in the current folder''.
+
+\begin{cmd}
+git add .
+\end{cmd}
+
+This command normally prints nothing. On Windows you may see a harmless warning such as \code{LF will be replaced by CRLF}; it can be ignored.
+
+In the Source Control panel, the files now move from \textbf{Changes} to \textbf{Staged Changes}.
+
+%---------------------------------------------------------
+\subsection{Step 4: \code{git commit -m "message"} --- Save a Snapshot}
+
+\textbf{Purpose:} Permanently records the staged changes in the local repository as a \textbf{commit}. The \code{-m} option supplies a short message describing what you changed.
+
+\begin{cmd}
+git commit -m "Add hello.py program"
+\end{cmd}
+\begin{outbox}
+[main (root-commit) 3f2a9c1] Add hello.py program
+ 1 file changed, 1 insertion(+)
+ create mode 100644 hello.py
+\end{outbox}
+
+\begin{itemize}
+\item \code{main} is the branch name; \code{root-commit} means this is the first commit.
+\item \code{3f2a9c1} is the short commit ID (yours will be different).
+\item After committing, the \textbf{Staged Changes} list in the Source Control panel becomes empty.
+\end{itemize}
+
+\begin{notebox}[Writing good commit messages]
+Write a short message that says \textbf{what} changed, e.g., \code{"Add factorial program"} or \code{"Fix input bug in marks.py"}. Avoid messages such as \code{"update"} or \code{"done"}.
+\end{notebox}
+
+%---------------------------------------------------------
+\subsection{Step 5: Create an Empty Repository on GitHub}
+
+Before connecting your project to GitHub, a repository must exist there:
+\begin{enumerate}
+\item Sign in at \code{https://github.com}.
+\item Click \menu{+} (top-right) $\rightarrow$ \menu{New repository}.
+\item Enter a \textbf{Repository name} (e.g., \code{Modern-Computing-and-Python-Programming}).
+\item Choose \menu{Public} or \menu{Private}.
+\item \textbf{Do not} tick \menu{Add a README file}, \menu{.gitignore}, or \menu{license} --- the repository must be empty.
+\item Click \menu{Create repository} and copy the HTTPS URL shown, which ends in \code{.git}.
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Step 6: \code{git remote} --- Connect to GitHub}
+
+\textbf{Purpose:} \code{git remote add} gives a short name to the GitHub repository's URL. By convention the name is \code{origin}.
+
+\begin{cmd}
+git remote add origin https://github.com/ManjunathPrasad/Modern-Computing-and-Python-Programming.git
+\end{cmd}
+
+\textbf{Replace the URL with the URL of your own repository.} This command prints nothing when it succeeds.
+
+To list the remotes that are connected:
+
+\begin{cmd}
+git remote
+\end{cmd}
+\begin{outbox}
+origin
+\end{outbox}
+
+To see the remote names together with their URLs, add \code{-v} (verbose):
+
+\begin{cmd}
+git remote -v
+\end{cmd}
+\begin{outbox}
+origin  https://github.com/ManjunathPrasad/Modern-Computing-and-Python-Programming.git (fetch)
+origin  https://github.com/ManjunathPrasad/Modern-Computing-and-Python-Programming.git (push)
+\end{outbox}
+
+%---------------------------------------------------------
+\subsection{Step 7: \code{git push origin main} --- Upload to GitHub}
+
+\textbf{Purpose:} Sends the commits of the local \code{main} branch to the remote named \code{origin} (GitHub).
+
+\begin{cmd}
+git push origin main
+\end{cmd}
+
+\textbf{First push only:} A window titled \textbf{Connect to GitHub} appears. Click \menu{Sign in with your browser}, log in to GitHub, and click \menu{Authorize}. Git remembers this login, so you will not be asked again on the same computer.
+
+\begin{outbox}
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 245 bytes | 245.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/ManjunathPrasad/Modern-Computing-and-Python-Programming.git
+ * [new branch]      main -> main
+\end{outbox}
+
+Refresh the repository page on GitHub: your files and your commit message now appear there.
+
+%=========================================================
+\section{The Complete Workflow}
+%=========================================================
+
+\subsection{First Time (New Project)}
+
+\begin{cmd}
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+git add .
+git commit -m "First commit"
+git remote add origin https://github.com/<username>/<repository>.git
+git push origin main
+\end{cmd}
+
+\subsection{Every Time After That}
+
+Once the project is set up, the daily cycle has only three commands:
+
+\begin{center}
+\begin{tikzpicture}
+\node[box,minimum width=2.4cm] (e) at (0,0) {Edit / create\\files};
+\node[box,minimum width=2.4cm] (a) at (3.6,0) {\code{git add .}};
+\node[box] (c) at (7.7,0) {\code{git commit -m "..."}};
+\node[box,fill=black!8] (p) at (12.3,0) {\code{git push origin main}};
+\draw[arr] (e)--(a); \draw[arr] (a)--(c); \draw[arr] (c)--(p);
+\draw[arr] (p.south) to[bend left=18] node[below,font=\scriptsize]{repeat for the next change} (e.south);
+\end{tikzpicture}
+\figcap{Figure 4: The everyday Git cycle}
+\end{center}
+
+\begin{cmd}
+git add .
+git commit -m "Describe your change"
+git push origin main
+\end{cmd}
+
+\subsection{The Same Steps Using VS Code Buttons}
+
+The Source Control panel (\code{Ctrl+Shift+G}) can do the same work without typing commands:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabularx}{\linewidth}{|l|X|}
+\hline
+\textbf{Command} & \textbf{Equivalent action in the Source Control panel} \\ \hline
+\code{git init} & Click \menu{Initialize Repository} (shown when the folder is not yet a repository). \\ \hline
+\code{git add .} & Click the \menu{+} (Stage All Changes) icon next to the \textbf{Changes} heading. \\ \hline
+\code{git commit -m "..."} & Type the message in the box at the top and click \menu{Commit}. \\ \hline
+\code{git push origin main} & Click \menu{Sync Changes} / \menu{Publish Branch}, or \menu{\ldots} $\rightarrow$ \menu{Push}. \\ \hline
+\end{tabularx}
+\end{center}
+
+%=========================================================
+\section{Common Errors and How to Fix Them}
+\label{sec:errors}
+%=========================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabularx}{\linewidth}{|p{5.3cm}|X|}
+\hline
+\textbf{Error message} & \textbf{Cause and fix} \\ \hline
+\code{git : The term 'git' is not recognized\ldots} & Git is not installed, or VS Code was open during installation. Close and reopen VS Code (or restart the computer) and try again. \\ \hline
+\code{fatal: not a git repository} & You are not inside a repository. Check the folder in the prompt, open the correct folder, or run \code{git init}. \\ \hline
+\code{Author identity unknown \ldots Please tell me who you are.} & The name and email are not set. Run the two \code{git config --global} commands (Step 2). \\ \hline
+\code{nothing to commit, working tree clean} & No changes since the last commit. Edit and \textbf{save} a file first, then run \code{git add .} again. \\ \hline
+\code{error: src refspec main does not match any} & Either no commit has been made yet, or your branch is called \code{master}. Make a commit first; if the status bar shows \code{master}, rename the branch with \code{git branch -M main}, then push again. \\ \hline
+\code{error: remote origin already exists.} & \code{origin} was added earlier. To change its URL, run \code{git remote set-url origin <new-URL>}. \\ \hline
+\code{! [rejected] main -> main (fetch first)} & The GitHub repository already contains files (e.g., a README created on the website). Create a new \textbf{empty} repository (Step 5) and add that URL instead. \\ \hline
+\code{Authentication failed} / \code{Permission denied} & You are signed in to a different GitHub account, or the URL is wrong. Check the URL with \code{git remote -v} and sign in with the account that owns the repository. \\ \hline
+\end{tabularx}
+\end{center}
+
+%=========================================================
+\section{Quick Reference}
+%=========================================================
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabularx}{\linewidth}{|p{6.4cm}|X|c|}
+\hline
+\textbf{Command} & \textbf{What it does} & \textbf{How often} \\ \hline
+\code{git --version} & Shows the installed Git version & Once \\ \hline
+\code{git init} & Makes the current folder a Git repository & Once per project \\ \hline
+\code{git config --global user.name "Name"} & Sets the author name for commits & Once per computer \\ \hline
+\code{git config --global user.email "email"} & Sets the author email for commits & Once per computer \\ \hline
+\code{git config --global --list} & Shows the configured settings & When checking \\ \hline
+\code{git add .} & Stages all changes (Changes $\rightarrow$ Staged Changes) & Every change \\ \hline
+\code{git commit -m "message"} & Saves the staged changes as a commit & Every change \\ \hline
+\code{git remote} / \code{git remote -v} & Lists remotes (with URLs when \code{-v} is used) & When checking \\ \hline
+\code{git remote add origin <URL>} & Connects the repository to GitHub & Once per project \\ \hline
+\code{git push origin main} & Uploads commits to GitHub & Every change \\ \hline
+\end{tabularx}
+\end{center}
+
+%=========================================================
+\section{Practice Exercise}
+%=========================================================
+
+\begin{enumerate}
+\item Create a folder named \code{MCPP-Lab} and open it in VS Code.
+\item Create a file \code{hello.py} containing \code{print("Hello, MITE")} and save it.
+\item Run \code{git init} and observe the \code{.git} message.
+\item Set your name and email with \code{git config --global} and verify them with \code{git config --global --list}.
+\item Run \code{git add .} and observe the file moving to \textbf{Staged Changes} in the Source Control panel.
+\item Commit with the message \code{"Add hello program"}.
+\item Create an empty repository named \code{MCPP-Lab} on GitHub.
+\item Connect it using \code{git remote add origin <your-URL>} and check it with \code{git remote -v}.
+\item Push using \code{git push origin main} and confirm that \code{hello.py} appears on GitHub.
+\item Add a second file \code{sum.py} that prints the sum of two numbers. Add, commit, and push it, and check that GitHub now shows \textbf{2 commits}.
+\end{enumerate}
+
+\end{document}
