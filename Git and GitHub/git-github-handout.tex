@@ -99,7 +99,9 @@ Modern Computing and Python Programming (26ESCC106)\\[6pt]
 \item Install \textbf{Visual Studio Code (VS Code)} and \textbf{Git} on your computer.
 \item Identify the parts of the VS Code window: menu bar, activity bar, side bar, editor, and the integrated PowerShell terminal.
 \item Use the Git commands \code{git init}, \code{git config}, \code{git add}, \code{git commit}, \code{git remote}, and \code{git push}.
-\item Upload (push) your work to a repository on \textbf{GitHub}.
+\item Create a \textbf{GitHub} account, sign in, and create a new repository.
+\item Upload (push) your work to the repository on GitHub.
+\item Explore the pushed repository on \code{github.com}: its home page, branches, commits, and the \menu{Code} button.
 \end{enumerate}
 \end{notebox}
 
@@ -272,6 +274,38 @@ PS C:\Users\Student\MCPP>
 \end{outbox}
 
 %=========================================================
+\section{Creating a GitHub Account and Signing In}
+\label{sec:account}
+%=========================================================
+
+\subsection{Sign Up (Create an Account)}
+
+\begin{enumerate}
+\item Open \code{https://github.com} and click \menu{Sign up} (top-right).
+\item Enter your \textbf{email address}. Use an email you can open now, because GitHub sends a verification code to it.
+\item Create a \textbf{password}. Use a strong password and do not share it.
+\item Choose a \textbf{username}. It becomes part of every repository address, e.g., \code{github.com/\allowbreak<username>/\allowbreak<repository>}, so choose a simple, professional name (e.g., your first and last name).
+\item Select your \textbf{country/region} and email preferences, then click \menu{Create account} (or \menu{Continue}).
+\item Complete the \textbf{verification puzzle} that checks that you are a human.
+\item Open your email inbox, copy the \textbf{launch code} sent by GitHub, and enter it on the GitHub page.
+\item Your account is now created. If GitHub asks optional questions about how you will use it, you may answer them or skip them. Choose the \textbf{Free} plan if a plan is offered.
+\end{enumerate}
+
+\subsection{Sign In (Log In)}
+
+\begin{enumerate}
+\item Open \code{https://github.com} and click \menu{Sign in}.
+\item Enter your \textbf{username or email address} and your \textbf{password}, and click \menu{Sign in}.
+\item If GitHub asks for \textbf{device verification}, enter the code sent to your email.
+\item If GitHub asks you to set up \textbf{two-factor authentication (2FA)}, follow the on-screen steps using an authenticator app on your phone, and \textbf{save the recovery codes} in a safe place.
+\item When you are signed in, your profile picture (avatar) appears at the top-right of every GitHub page.
+\end{enumerate}
+
+\begin{notebox}
+GitHub changes its sign-up screens from time to time, so the exact wording may differ slightly. The information asked for (email, password, username, verification) remains the same.
+\end{notebox}
+
+%=========================================================
 \section{How Git Tracks Your Work}
 %=========================================================
 
@@ -385,12 +419,14 @@ Write a short message that says \textbf{what} changed, e.g., \code{"Add factoria
 
 Before connecting your project to GitHub, a repository must exist there:
 \begin{enumerate}
-\item Sign in at \code{https://github.com}.
+\item Sign in at \code{https://github.com} (Section~\ref{sec:account}).
 \item Click \menu{+} (top-right) $\rightarrow$ \menu{New repository}.
-\item Enter a \textbf{Repository name} (e.g., \code{Modern-Computing-and-Python-Programming}).
-\item Choose \menu{Public} or \menu{Private}.
-\item \textbf{Do not} tick \menu{Add a README file}, \menu{.gitignore}, or \menu{license} --- the repository must be empty.
-\item Click \menu{Create repository} and copy the HTTPS URL shown, which ends in \code{.git}.
+\item Enter a \textbf{Repository name} (e.g., \code{Modern-Computing-and-Python-Programming}). Use hyphens instead of spaces.
+\item Optionally, type a short \textbf{Description} of the project.
+\item Choose \menu{Public} (anyone can see it) or \menu{Private} (only you and the people you invite can see it).
+\item \textbf{Do not} add a README file, a \code{.gitignore}, or a license --- the repository must be \textbf{empty}, because your files will come from your computer.
+\item Click \menu{Create repository}.
+\item GitHub opens a \textbf{Quick setup} page. Make sure \menu{HTTPS} is selected and copy the URL shown, which ends in \code{.git}. You will use it in Step 6.
 \end{enumerate}
 
 %---------------------------------------------------------
@@ -443,7 +479,7 @@ To https://github.com/ManjunathPrasad/Modern-Computing-and-Python-Programming.gi
  * [new branch]      main -> main
 \end{outbox}
 
-Refresh the repository page on GitHub: your files and your commit message now appear there.
+Refresh the repository page on GitHub: your files and your commit message now appear there. Section~\ref{sec:explore} explains what you see on that page.
 
 %=========================================================
 \section{The Complete Workflow}
@@ -499,6 +535,181 @@ The Source Control panel (\code{Ctrl+Shift+G}) can do the same work without typi
 \code{git push origin main} & Click \menu{Sync Changes} / \menu{Publish Branch}, or \menu{\ldots} $\rightarrow$ \menu{Push}. \\ \hline
 \end{tabularx}
 \end{center}
+
+%=========================================================
+\section{Exploring Your Repository on GitHub}
+\label{sec:explore}
+%=========================================================
+
+After a few pushes, open your repository on \code{github.com}. The screenshots below are of the course repository after \textbf{four commits} were pushed.
+
+%---------------------------------------------------------
+\subsection{The Repository Home Page}
+
+Address: \code{https://github.com/<username>/<repository>}
+
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth]{images/github_repo_home.png}};
+\begin{scope}[x={(img.south east)},y={(img.north west)}]
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0320,0.9828) rectangle (0.4320,0.9313);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0350,0.8797) rectangle (0.1155,0.8333);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.1204,0.8797) rectangle (0.2476,0.8333);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.6388,0.8814) rectangle (0.7243,0.8316);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0369,0.7973) rectangle (0.6369,0.7543);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.6408,0.7955) rectangle (0.7146,0.7577);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0369,0.7371) rectangle (0.7214,0.5790);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0369,0.5533) rectangle (0.7214,0.1804);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.7476,0.8849) rectangle (0.9631,0.0258);
+\node[callout] at (0.4466,0.9570) {1};
+\node[callout] at (0.0748,0.8076) {2};
+\node[callout] at (0.1845,0.8076) {3};
+\node[callout] at (0.7379,0.9021) {4};
+\node[callout] at (0.3689,0.8144) {5};
+\node[callout] at (0.6796,0.8144) {6};
+\node[callout] at (0.0223,0.6581) {7};
+\node[callout] at (0.0223,0.3694) {8};
+\node[callout] at (0.9806,0.8591) {9};
+\end{scope}
+\end{tikzpicture}
+\figcap{Figure 5: Repository home page after four pushes}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Repository name and visibility:} The name of the repository and a \textbf{Public} (or \textbf{Private}) label. In the page header, the owner's username (\code{ManjunathPrasad}) appears before the repository name.
+\item \textbf{Branch selector:} Shows the branch being viewed (\code{main}). Click it to switch to another branch.
+\item \textbf{Branches and tags:} \textbf{1 Branch} shows how many branches the repository has; click it to open the branches page (Figure~6). \textbf{0 Tags} shows that no version has been tagged yet.
+\item \textbf{Code button:} Gives the repository URL and a ZIP download (Figure~8).
+\item \textbf{Latest commit:} The author (\code{ManjunathPrasad}), the commit message (\code{added git and github handout}), the short commit ID (\code{1f89048}), and how long ago it was pushed.
+\item \textbf{Commit count:} \textbf{4 Commits} is the total number of commits on this branch. Click it to open the commit history (Figure~7).
+\item \textbf{Files and folders:} The contents of the repository. Each row shows the name, the message of the \textbf{last commit that changed it}, and when. Note that build files such as \code{.aux} and \code{.log} do not appear, because \code{.gitignore} told Git to ignore them.
+\item \textbf{README area:} GitHub displays the \code{README.md} file here. This repository has none yet, so GitHub offers an \menu{Add a README} button.
+\item \textbf{About sidebar:} The description, stars, watchers, forks, releases, packages, \textbf{contributors} (people who have committed), and \textbf{languages} (detected from the file types; here TeX 100\%).
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Branches}
+
+Address: \code{https://github.com/<username>/<repository>/branches} (or click \textbf{1 Branch} in Figure~5)
+
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth]{images/github_branches.png}};
+\begin{scope}[x={(img.south east)},y={(img.north west)}]
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0222,0.7360) rectangle (0.2493,0.6040);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.9005,0.9440) rectangle (0.9826,0.8320);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0242,0.1680) rectangle (0.0580,0.0800);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.4947,0.1680) rectangle (0.5816,0.0800);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.7517,0.1680) rectangle (0.8000,0.0800);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.9275,0.1680) rectangle (0.9681,0.0800);
+\node[callout] at (0.2657,0.6800) {1};
+\node[callout] at (0.8841,0.8880) {2};
+\node[callout] at (0.0242,0.0400) {3};
+\node[callout] at (0.5382,0.0400) {4};
+\node[callout] at (0.7758,0.0400) {5};
+\node[callout] at (0.9478,0.0400) {6};
+\end{scope}
+\end{tikzpicture}
+\figcap{Figure 6: The branches page}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Tabs:} \textbf{Overview}, \textbf{Yours}, \textbf{Active}, \textbf{Stale}, and \textbf{All} filter the list of branches.
+\item \textbf{New branch:} Creates a new branch on GitHub.
+\item \textbf{Branch name:} The repository has one branch, \code{main} --- the branch we pushed with \code{git push origin main}.
+\item \textbf{Updated:} When the branch last received a commit, and by whom (avatar).
+\item \textbf{Default:} \code{main} is the \textbf{default branch}: GitHub shows it on the home page and uses it unless another branch is chosen. The \textbf{Behind/Ahead} columns compare other branches with the default branch.
+\item \textbf{Delete and more options:} The bin icon deletes a branch and \menu{\ldots} shows more actions. (The default branch cannot be deleted.)
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Commits (History)}
+
+Address: \code{https://github.com/<username>/<repository>/commits/main} (or click \textbf{4 Commits} in Figure~5)
+
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (img) at (0,0) {\includegraphics[width=\linewidth]{images/github_commits.png}};
+\begin{scope}[x={(img.south east)},y={(img.north west)}]
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0126,0.8421) rectangle (0.0947,0.7711);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0184,0.7368) rectangle (0.1614,0.6868);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0551,0.6474) rectangle (0.2280,0.5947);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.0551,0.5921) rectangle (0.2580,0.5474);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.8705,0.6237) rectangle (0.9401,0.5711);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.9430,0.6289) rectangle (0.9662,0.5684);
+\node[callout] at (0.1111,0.8079) {1};
+\node[callout] at (0.1787,0.7105) {2};
+\node[callout] at (0.2464,0.6211) {3};
+\node[callout] at (0.2754,0.5684) {4};
+\node[callout] at (0.9063,0.5342) {5};
+\node[callout] at (0.9807,0.6000) {6};
+\end{scope}
+\end{tikzpicture}
+\figcap{Figure 7: The commit history of the main branch}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Branch selector:} The history shown is for the \code{main} branch.
+\item \textbf{Date groups:} Commits are grouped by the day they were made (\textbf{Commits on Oct 6, 2026}). The \textbf{newest commit is at the top}.
+\item \textbf{Commit message:} Exactly the text given in \code{git commit -m "\ldots"}. Click it to see the changes in that commit: added lines in \textbf{green} and removed lines in \textbf{red}.
+\item \textbf{Author and time:} Who made the commit (from \code{git config user.name}) and when.
+\item \textbf{Commit ID:} The short commit ID (\code{1f89048}) --- the same ID that \code{git commit} printed in the terminal. The icon next to it copies the full ID.
+\item \textbf{Browse files (\code{<>}):} Shows the whole repository as it was at that commit.
+\end{enumerate}
+
+\begin{notebox}[Why good commit messages matter]
+The commit history is a diary of the project. Clear messages such as \code{added Module 1 Group 1 slide-wise handout} tell everyone what changed in each step without opening the files.
+\end{notebox}
+
+%---------------------------------------------------------
+\subsection{The Code Button}
+
+\begin{center}
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0] (img) at (0,0) {\includegraphics[width=0.85\linewidth]{images/github_code_clone.png}};
+\begin{scope}[x={(img.south east)},y={(img.north west)}]
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.6541,0.9642) rectangle (0.7429,0.8806);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.4255,0.8537) rectangle (0.4714,0.7701);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.4337,0.6478) rectangle (0.4918,0.5731);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.4337,0.5612) rectangle (0.7286,0.4776);
+\draw[red,line width=1.1pt,rounded corners=1pt] (0.4337,0.1254) rectangle (0.5327,0.0657);
+\node[callout] at (0.7602,0.9224) {1};
+\node[callout] at (0.4133,0.8119) {2};
+\node[callout] at (0.4133,0.6119) {3};
+\node[callout] at (0.7500,0.5194) {4};
+\node[callout] at (0.5510,0.0955) {5};
+\end{scope}
+\end{tikzpicture}
+\figcap{Figure 8: The Code button menu}
+\end{center}
+
+\begin{enumerate}
+\item \textbf{Code button:} The green button on the repository home page.
+\item \textbf{Local tab:} Options for getting the code onto your own computer. (\textbf{Codespaces} opens the code in an online editor instead.)
+\item \textbf{HTTPS tab:} Select HTTPS --- the same type of URL used in this handout.
+\item \textbf{Repository URL and copy button:} The URL ending in \code{.git}. This is the URL used in \code{git remote add origin <URL>}. Click the copy icon to copy it.
+\item \textbf{Download ZIP:} Downloads all the files as a single ZIP file (without the Git history).
+\end{enumerate}
+
+%---------------------------------------------------------
+\subsection{Demonstration: Watching a Push Appear on GitHub}
+
+\begin{enumerate}
+\item Open the repository home page (Figure~5) and note the number of commits (e.g., \textbf{4 Commits}).
+\item In VS Code, edit a file or add a new one, and save it.
+\item In the terminal, run:
+\end{enumerate}
+\begin{cmd}
+git add .
+git commit -m "Add sum.py program"
+git push origin main
+\end{cmd}
+\begin{enumerate}[resume]
+\item Refresh the GitHub page. The commit count increases by one (\textbf{5 Commits}), and the latest-commit row shows the new message.
+\item Click the commit count. The new commit is at the top of the history (Figure~7), with the same commit ID that the terminal printed.
+\item Click the commit message to see exactly which lines were added or changed.
+\item Open \textbf{1 Branch} (Figure~6): the \textbf{Updated} time of \code{main} has changed to ``now''.
+\end{enumerate}
 
 %=========================================================
 \section{Common Errors and How to Fix Them}
@@ -559,7 +770,9 @@ The Source Control panel (\code{Ctrl+Shift+G}) can do the same work without typi
 \item Create an empty repository named \code{MCPP-Lab} on GitHub.
 \item Connect it using \code{git remote add origin <your-URL>} and check it with \code{git remote -v}.
 \item Push using \code{git push origin main} and confirm that \code{hello.py} appears on GitHub.
-\item Add a second file \code{sum.py} that prints the sum of two numbers. Add, commit, and push it, and check that GitHub now shows \textbf{2 commits}.
+\item Add a second file \code{sum.py} that prints the sum of two numbers. Add, commit, and push it, and check that GitHub now shows \textbf{2 Commits}.
+\item On GitHub, open \textbf{2 Commits} and identify the commit ID, message, author, and time of each commit. Compare the IDs with the ones printed by \code{git commit} in your terminal.
+\item Open the branches page and confirm that \code{main} is the \textbf{Default} branch and shows the latest update time.
 \end{enumerate}
 
 \end{document}
