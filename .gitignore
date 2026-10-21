@@ -49,7 +49,7 @@ _minted*/
 # published so that students can download them.
 
 # Preview PDFs shared during drafting (duplicates of the compiled PDFs)
-*_preview.pdf
+# *_preview.pdf
 
 # Zip packages of the sources
 *.zip
